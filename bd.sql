@@ -91,6 +91,19 @@ CREATE TABLE IF NOT EXISTS Actividades(
 
 )ENGINE=INNODB;
 
+CREATE TABLE IF NOT EXISTS Usuarios_Actividades(
+
+	usuario_fk INT,
+	actividad_fk INT,
+
+	CONSTRAINT FOREIGN KEY (usuario_fk) REFERENCES Usuarios(usuario_pk)
+		ON DELETE CASCADE ON UPDATE CASCADE,
+
+	CONSTRAINT FOREIGN KEY (actividad_fk) REFERENCES Actividades(actividad_pk)
+		ON DELETE CASCADE ON UPDATE CASCADE
+
+)ENGINE=INNODB;
+
 /* Creamos los permisos de los usuarios*/
 INSERT INTO Tipos_Usuarios(nombreTipo) VALUES('Administrador');
 INSERT INTO Tipos_Usuarios(nombreTipo) VALUES('Organizador');

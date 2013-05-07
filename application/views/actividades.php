@@ -27,8 +27,13 @@
                 <div class="span3"> <h4>Ponente:</h4> <?php echo $con->nombrePonente; ?> </div>
                 <div class="span2"> <h4>Lugar:</h4> <?php echo $con->edificio.' - '.$con->salon; ?> </div>
                 <div class="span4"> <h4>Lugares disponibles:</h4> <?php echo $con->capacidad - $con->inscritos; ?>  </div>
-
-                <div class="span1" style="margin-top:2%;"><a href=""class="btn btn-success">Asistir</a></div>
+                
+                <?php if( !($con->capacidad - $con->inscritos) == 0 ){ ?>
+                <form action="<?php echo base_url().'index.php/actividades/asistir' ?>" method="POST">
+                  <input type="hidden" name="actividad" value="<?php echo $con->actividad_pk ?>">
+                <div class="span1" style="margin-top:2%;"><button type="submit" class="btn btn-success">Asistir</button></div>
+                </form>
+                <?php } ?>
               </div>
             </div>
           </div>

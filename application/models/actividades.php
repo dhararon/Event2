@@ -14,7 +14,7 @@ class Actividades extends CI_Model{
 
     public function actividades(){
 
-        $even = $this->security->xss_clean($this->uri->segment(3));
+        $even = $this->security->xss_clean( $this->uri->segment(3) );
 
         $this->db->select('*');
         $this->db->from('Actividades');
@@ -30,7 +30,7 @@ class Actividades extends CI_Model{
 
     public function eventos(){
 
-        $even = $this->security->xss_clean($this->uri->segment(3));
+        $even = $this->security->xss_clean( $this->uri->segment(3) );
 
         $this->db->select('*');
         $this->db->from('Eventos');
@@ -41,7 +41,7 @@ class Actividades extends CI_Model{
         return $row;
 
     }
-
+    
 }
 
 ?>

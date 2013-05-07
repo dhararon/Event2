@@ -32,7 +32,7 @@
         <div class="offset1 span9 well well-small">
           <h2><?php echo $nombreEvento; ?></h2>
           <p><?php echo $descripcion; ?></p>
-          <p><a class="btn btn-warning" href="#">Ver evento &raquo;</a></p>
+          <p><a class="btn btn-warning" href="<?php echo base_url().'index.php/eventos/ver/'.$evento_pk ?>">Ver evento &raquo;</a></p>
         </div>
         
       </div>

@@ -18,9 +18,9 @@ class Actividades extends CI_Controller {
 	 * Pagina index para este controlador.
 	 *
 	 * Mapa para ver este archivo
-	 * 		http://example.com/index.php/dashboard
+	 * 		http://example.com/index.php/actividades
 	 *	- o -  
-	 * 		http://example.com/index.php/dashboard/index
+	 * 		http://example.com/index.php/actividades/index
 	 *
 	 */
 
@@ -33,13 +33,15 @@ class Actividades extends CI_Controller {
     	$crud->set_table('Actividades');
     	$crud->set_subject('Actividad');
 
+    	$crud->fields('nombreActividades','tipo','ponente_fk','aula_fk','evento_fk','hora','fecha','descripcion','inscritos');
+
+    	$crud->columns('nombreActividades','tipo','fecha','hora','aula_fk');
+
     	$crud->display_as('nombreActividades','Nombre de la actividad');
     	$crud->display_as('tipo','Tipo de actividad');
     	$crud->display_as('ponente_fk','Ponente');
     	$crud->display_as('aula_fk','Aula');
     	$crud->display_as('evento_fk','Evento');	
-
-    	$crud->unset_add_fields('actividad_pk');
 
     	$crud->set_relation('ponente_fk','Ponentes','nombrePonente');
     	$crud->set_relation('aula_fk','Aulas','{Edificio} - {salon}');
@@ -58,7 +60,9 @@ class Actividades extends CI_Controller {
 	/* Fin de la función index */
 
 	/*
+	*
 	* Funcion que verifica si ha iniciado sesion
+	*
 	*/
 	public function is_login(){
 
@@ -77,6 +81,40 @@ class Actividades extends CI_Controller {
 
 	/* Fin de la funcion is_login */
 
+	/*
+	*
+	*	Funcion que da de alta un lugar en la base de datos para el evento
+	*	Mapa para ver este archivo:
+	* 		http://example.com/index.php/actividades/asistir
+	*
+	*/
+
+	public function asistir(){
+
+		if( $this->input->post('actividad') ){
+
+			$this->load->model('asistencias');
+
+			if( $this->asistencias->asistir() ){
+
+				return True;
+
+			}
+			else{
+			
+				return False;
+
+			}
+		}
+		else{
+
+			redirect( base_url() );
+
+		}
+
+
+	}
+	/* Fin de la funcion asistir */
 
 }
 

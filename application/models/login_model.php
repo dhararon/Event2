@@ -48,7 +48,8 @@ class Login_model extends CI_Model{
                     'tipo' => $row->nombreTipo,
                     'semestre' => $row->semestre,
                     'carrera' => $row->nombreCarrera,
-                    'activo' => True
+                    'activo' => True,
+                    'usuarioID' => $row->usuario_pk
                 
                     );
 
