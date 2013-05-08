@@ -95,16 +95,10 @@ class Actividades extends CI_Controller {
 
 			$this->load->model('asistencias');
 
-			if( $this->asistencias->asistir() ){
+			$respuesta = $this->asistencias->asistir();
 
-				return True;
+			echo json_encode($respuesta);
 
-			}
-			else{
-			
-				return False;
-
-			}
 		}
 		else{
 

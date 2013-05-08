@@ -16,6 +16,10 @@ class Actividades extends CI_Model{
 
         $even = $this->security->xss_clean( $this->uri->segment(3) );
 
+        // trae todos lso que ya estan inscritos
+        /*
+    SELECT Actividades.actividad_pk FROM Usuarios_Actividades JOIN Actividades ON Actividades.actividad_pk = Usuarios_Actividades.actividad_fk WHERE usuario_fk = 0
+        */
         $this->db->select('*');
         $this->db->from('Actividades');
         $this->db->join('Ponentes','Ponentes.ponente_pk = Actividades.ponente_fk');

@@ -26,13 +26,11 @@
               <div class="row">
                 <div class="span3"> <h4>Ponente:</h4> <?php echo $con->nombrePonente; ?> </div>
                 <div class="span2"> <h4>Lugar:</h4> <?php echo $con->edificio.' - '.$con->salon; ?> </div>
-                <div class="span4"> <h4>Lugares disponibles:</h4> <?php echo $con->capacidad - $con->inscritos; ?>  </div>
+                <div class="span4"> <h4>Lugares disponibles:</h4> <p id="disponibles" ><?php echo $con->capacidad - $con->inscritos; ?> </p> </div>
                 
                 <?php if( !($con->capacidad - $con->inscritos) == 0 ){ ?>
-                <form action="<?php echo base_url().'index.php/actividades/asistir' ?>" method="POST">
-                  <input type="hidden" name="actividad" value="<?php echo $con->actividad_pk ?>">
-                <div class="span1" style="margin-top:2%;"><button type="submit" class="btn btn-success">Asistir</button></div>
-                </form>
+                  <input type="hidden" name="actividad" value="<?php echo $con->actividad_pk ?>" id="actividad">
+                <div class="span1" style="margin-top:2%;"><button id="subir" class="btn btn-success">Asistir</button></div>
                 <?php } ?>
               </div>
             </div>
@@ -44,3 +42,35 @@
       </div>
 
       <hr>
+
+      <script type="text/javascript">
+
+      $(document).ready(function(){
+
+        $('#subir').click(function(){
+
+          var actividad = $('#actividad').val();
+
+          $.ajax({
+            url: '<?php echo base_url()."index.php/actividades/asistir"; ?>',
+            type:'POST',
+            data: { actividad: actividad} ,
+            dataType: 'json'
+            }).done(function(mensaje){
+              if( mensaje == 'TRUE' ){
+                  var dis = $('#disponibles').text();
+                  $('#disponibles').text(dis-1);
+                  $('#subir').hide();
+              }
+              else{
+                alert('No se pudo dar de alta en el sistema, vuelva a intentarlo');
+              }
+              
+
+            }); // End of ajax call 
+
+        });
+
+      });
+
+      </script>

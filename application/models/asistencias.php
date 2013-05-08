@@ -38,19 +38,19 @@ class Asistencias extends CI_Model{
                 $this->db->set('actividad_fk',$actividad);
                 $this->db->insert('Usuarios_Actividades');
 
-                return True;
+                return 'TRUE';
 
                     }
             else{
 
-                return False;
+                return 'FALSE';
 
             }
 
         }
         else{
 
-            return False;
+            return 'FALSE';
 
         }
 
