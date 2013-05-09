@@ -28,6 +28,7 @@
       </div>
 
       <!-- Example row of columns -->
+      <?php if( @$nombreEvento ){ ?>
       <div class="row">
         <div class="offset1 span9 well well-small">
           <h2><?php echo $nombreEvento; ?></h2>
@@ -36,5 +37,14 @@
         </div>
         
       </div>
+    <?php }
+    else{
+    ?>
+    <div class="row">
+            <div class="span9 well well-large" style="margin-top:4%;">
+              <h2>Lo sentimo,no hay eventos disponibles</h2>
+            </div>
+          </div>
+          <?php } ?>
 
       <hr>

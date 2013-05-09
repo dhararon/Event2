@@ -81,7 +81,16 @@ foreach($css_files as $file): ?>
                <li><a href="<?php echo base_url(); ?>index.php/ponentes">Ponentes</a></li>
                <li><a href="<?php echo base_url();?>index.php/logout">Cerrar sesión</a></li>
 
-              <?php } ?>
+              <?php } 
+
+                else{ ?>
+
+                <li><a href="<?php echo base_url(); ?>">Inicio</a></li>
+                <li><a href="<?php echo base_url(); ?>index.php/actividades/mis_act">Mis Actividades</a></li>
+                <li><a href="<?php echo base_url().'index.php/usuario/index/edit/'.$this->session->userdata('usuarioID') ?>">Configuración</a></li>
+                <li><a href="<?php echo base_url();?>index.php/logout">Cerrar sesión</a></li>
+
+                <?php } ?>
             
             </ul>
           </div><!--/.nav-collapse -->

@@ -59,7 +59,7 @@ class Aulas extends CI_Controller {
 		if( !$this->session->userdata('activo') ){
 			redirect(base_url());
 		}
-		else if( !$this->session->userdata('tipo') == 'Administrador' || !$this->session->userdata('tipo') == 'Organizador' ){
+		else if( $this->session->userdata('tipo') != 'Administrador' && !$this->session->userdata('tipo') != 'Organizador' ){
 			redirect(base_url());		
 		}
 

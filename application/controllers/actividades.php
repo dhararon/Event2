@@ -26,6 +26,10 @@ class Actividades extends CI_Controller {
 
 	public function index()
 	{
+		if( $this->session->userdata('tipo') != 'Administrador' && !$this->session->userdata('tipo') != 'Organizador' ){
+			redirect(base_url());
+		}
+		else{
 
 		$crud = new grocery_CRUD();
  
@@ -54,6 +58,7 @@ class Actividades extends CI_Controller {
 		$this->load->view('includes/head',$output);
 		$this->load->view('usuarios');
 		$this->load->view('includes/footer');
+	}
 
 	}
 	
@@ -72,9 +77,6 @@ class Actividades extends CI_Controller {
 		//
 		if( !$this->session->userdata('activo') ){
 			redirect(base_url());
-		}
-		else if( !$this->session->userdata('tipo') == 'Administrador' || !$this->session->userdata('tipo') == 'Organizador' ){
-			redirect(base_url());		
 		}
 
 	}
@@ -109,6 +111,28 @@ class Actividades extends CI_Controller {
 
 	}
 	/* Fin de la funcion asistir */
+
+	/*
+	*
+	*	Funcion que muestra todas mis actividades del usuario
+	*	Mapa para ver este archivo:
+	*		http://example.com/index.php/actividades/mis_act
+	*
+	*/
+
+	public function mis_act(){
+
+			$this->load->model('mis_actividades');
+			$actividades['actividades'] = $this->mis_actividades->mis_actividades();
+
+			$actividades['tipo'] = $this->session->userdata('tipo');
+			$actividades['tabla'] = FALSE;
+
+			$this->load->view('includes/head',$actividades);
+			$this->load->view('mi_act');
+			$this->load->view('includes/footer');
+
+	}
 
 }
 

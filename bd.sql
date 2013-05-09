@@ -23,12 +23,12 @@ CREATE TABLE IF NOT EXISTS Usuarios(
 	nombreUsuario VARCHAR(80) NOT NULL,
 	apellidoPat VARCHAR(80) NOT NULL,
 	apellidoMat VARCHAR(80) NOT NULL,
-	cuenta VARCHAR(10) UNIQUE,
+	cuenta VARCHAR(10) NOT NULL UNIQUE,
 	carrera_fk INT NOT NULL,
 	semestre INT,
 	imagen VARCHAR(250),
 	password VARCHAR(50),
-	tipo_fk INT NOT NULL,
+	tipo_fk INT NOT NULL DEFAULT 3,
 
 	CONSTRAINT FOREIGN KEY (tipo_fk) REFERENCES Tipos_Usuarios(tipoUsuario_pk)
 		ON DELETE CASCADE ON UPDATE CASCADE,
@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS Eventos(
 	descripcion TEXT NOT NULL
 
 )ENGINE=INNODB;
+
 
 CREATE TABLE IF NOT EXISTS Ponentes(
 

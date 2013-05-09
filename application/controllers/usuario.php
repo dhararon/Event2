@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ponentes extends CI_Controller {
+class Usuario extends CI_Controller {
 
 	function __construct()
 	{
@@ -18,39 +18,61 @@ class Ponentes extends CI_Controller {
 	 * Pagina index para este controlador.
 	 *
 	 * Mapa para ver este archivo
-	 * 		http://example.com/index.php/dashboard
+	 * 		http://example.com/index.php/actividades
 	 *	- o -  
-	 * 		http://example.com/index.php/dashboard/index
+	 * 		http://example.com/index.php/actividades/index
 	 *
 	 */
 
 	public function index()
 	{
 
+		$direccion = 'edit/'.$this->session->userdata('usuarioID');
+			$ruta = $this->uri->segment(3).'/'.$this->uri->segment(4);
+
+			if( $ruta != $direccion ){	
+				redirect( base_url().'index.php/usuario/index/edit/'.$this->session->userdata('usuarioID') );
+			}
+
+
 		$crud = new grocery_CRUD();
  
     	$crud->set_theme('flexigrid');
-    	$crud->set_table('Ponentes');
-    	$crud->set_subject('Ponente');
+    	$crud->set_table('Usuarios');
+    	$crud->set_subject('Usuario');
 
-    	$crud->display_as('nombrePonente','Nombre del ponente');
+    	$crud->where('usuario_pk',$this->session->userdata('usuarioID') );
 
-    	$crud->unset_add_fields('ponente_pk');
+    	$crud->change_field_type('password','password');
 
+    	$crud->unset_back_to_list();
+
+    	$crud->display_as('nombreUsuario','Nombre');
+    	$crud->display_as('apellidoPat','Apellido Paterno');
+    	$crud->display_as('apellidoMat','Apellido Materno');
+
+    	$crud->fields('nombreUsuario','apellidoPat','apellidoMat','imagen','password');
+
+    	$crud->set_field_upload('imagen','assets/uploads/fotos');
+ 
     	$output = $crud->render();
+ 		
     	$output->tipo = $this->session->userdata('tipo');
  		$output->tabla = True;
- 
+
 		$this->load->view('includes/head',$output);
-		$this->load->view('usuarios');
+		$this->load->view('usuario');
 		$this->load->view('includes/footer');
 
+			
 	}
 	
 	/* Fin de la función index */
 
 	/*
+	*
 	* Funcion que verifica si ha iniciado sesion
+	*
 	*/
 	public function is_login(){
 
@@ -60,9 +82,6 @@ class Ponentes extends CI_Controller {
 		//
 		if( !$this->session->userdata('activo') ){
 			redirect(base_url());
-		}
-		else if( $this->session->userdata('tipo') != 'Administrador' && !$this->session->userdata('tipo') != 'Organizador' ){
-			redirect(base_url());		
 		}
 
 	}

@@ -18,14 +18,15 @@ class Actividades extends CI_Model{
 
         // trae todos lso que ya estan inscritos
         /*
-    SELECT Actividades.actividad_pk FROM Usuarios_Actividades JOIN Actividades ON Actividades.actividad_pk = Usuarios_Actividades.actividad_fk WHERE usuario_fk = 0
         */
-        $this->db->select('*');
-        $this->db->from('Actividades');
-        $this->db->join('Ponentes','Ponentes.ponente_pk = Actividades.ponente_fk');
-        $this->db->join('Aulas','Aulas.aula_pk = Actividades.aula_fk');
-        $this->db->where('evento_fk',$even);
-        $query = $this->db->get();
+        $consulta = '
+        SELECT Actividades.actividad_pk,Actividades.nombreActividades, Actividades.tipo,Actividades.fecha,Actividades.hora,Actividades.descripcion,Actividades.inscritos,Ponentes.nombrePonente,Aulas.edificio,Aulas.salon,Aulas.capacidad
+        FROM Actividades
+        JOIN Ponentes ON Ponentes.ponente_pk = Actividades.ponente_fk
+        JOIN Aulas ON Aulas.aula_pk = Actividades.aula_fk
+        WHERE evento_fk = '.$even.' AND NOT actividad_pk = ANY ( SELECT actividad_fk FROM Usuarios_Actividades WHERE usuario_fk = '.$this->session->userdata('usuarioID').' )';
+
+        $query = $this->db->query($consulta);
         $row = $query->result();
 
         return $row;
@@ -42,6 +43,23 @@ class Actividades extends CI_Model{
         $query = $this->db->get();
         $row = $query->row();
         
+        return $row;
+
+    }
+
+    public function mis_actividades(){
+
+        $consulta = '
+            SELECT Actividades.fecha,Actividades.hora,Actividades.nombreActividades,Aulas.edificio,Aulas.salon
+            FROM Actividades
+            JOIN Aulas ON Aulas.aula_pk = Actividades.aula_fk 
+            WHERE actividad_pk = ANY(SELECT actividad_fk FROM Usuarios_Actividades WHERE usuario_fk = '.$this->session->userdata('usuarioID').') 
+            ORDER BY fecha,hora DESC
+        ';
+
+        $query = $this->db->query($consulta);
+        $row = $query->result();
+
         return $row;
 
     }
