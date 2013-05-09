@@ -50,6 +50,8 @@ class Usuarios extends CI_Controller {
 
     	$crud->set_relation('carrera_fk','Carreras','nombreCarrera');
     	$crud->set_relation('tipo_fk','Tipos_Usuarios','nombreTipo');
+
+    	$crud->callback_before_insert(array($this,'encrypt_password_callback'));
  
     	$output = $crud->render();
  		
@@ -83,6 +85,13 @@ class Usuarios extends CI_Controller {
 	}
 
 	/* Fin de la funcion is_login */
+
+	function encrypt_password_callback($post_array) {
+
+  $post_array['password'] = $this->encrypt->sha1($post_array['password']);
+ 
+  return $post_array;
+}  
 
 
 }

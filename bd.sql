@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS Usuarios(
 	carrera_fk INT NOT NULL,
 	semestre INT,
 	imagen VARCHAR(250),
-	password VARCHAR(50),
+	password VARCHAR(250),
 	tipo_fk INT NOT NULL DEFAULT 3,
 
 	CONSTRAINT FOREIGN KEY (tipo_fk) REFERENCES Tipos_Usuarios(tipoUsuario_pk)
@@ -119,4 +119,4 @@ INSERT INTO Carreras(nombreCarrera,abreviatura) VALUES('Administracion','LAM');
 INSERT INTO Carreras(nombreCarrera,abreviatura) VALUES('Derecho','LDC');
 
 /* Creamos el administrador */
-INSERT INTO Usuarios VALUES('','Dharwin Aaron','Perez','Rodriguez','1025747',1,6,'','chachito',1);
+INSERT INTO Usuarios VALUES('','Dharwin Aaron','Perez','Rodriguez','1025747',1,6,'','5e6930a44b653a4d246213cefe4afff3e45eb917',1);

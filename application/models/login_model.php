@@ -21,6 +21,7 @@ class Login_model extends CI_Model{
         $username = $this->security->xss_clean($this->input->post('usuario'));
         $password = $this->security->xss_clean($this->input->post('password'));
         
+        $password = $this->encrypt->sha1($password);
         //
         // Creamos el SQL
         //

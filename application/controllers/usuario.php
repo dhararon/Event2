@@ -54,6 +54,8 @@ class Usuario extends CI_Controller {
     	$crud->fields('nombreUsuario','apellidoPat','apellidoMat','imagen','password');
 
     	$crud->set_field_upload('imagen','assets/uploads/fotos');
+
+    	$crud->callback_before_insert(array($this,'encrypt_password_callback'));
  
     	$output = $crud->render();
  		
@@ -88,6 +90,12 @@ class Usuario extends CI_Controller {
 
 	/* Fin de la funcion is_login */
 
+function encrypt_password_callback($post_array) {
+
+  $post_array['password'] = $this->encrypt->sha1($post_array['password']);
+ 
+  return $post_array;
+}  
 
 }
 
