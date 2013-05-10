@@ -26,10 +26,7 @@ class Actividades extends CI_Controller {
 
 	public function index()
 	{
-		if( $this->session->userdata('tipo') != 'Administrador' && !$this->session->userdata('tipo') != 'Organizador' ){
-			redirect(base_url());
-		}
-		else{
+		if( $this->session->userdata('tipo') == 'Administrador' || $this->session->userdata('tipo') == 'Organizador' ){
 
 		$crud = new grocery_CRUD();
  
@@ -59,6 +56,10 @@ class Actividades extends CI_Controller {
 		$this->load->view('usuarios');
 		$this->load->view('includes/footer');
 	}
+
+		else{
+			redirect(base_url());
+		}
 
 	}
 	

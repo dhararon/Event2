@@ -28,6 +28,7 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url();?>/assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="<?php echo base_url();?>/assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="<?php echo base_url();?>/assets/ico/favicon.png">
+
           <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
     
@@ -64,7 +65,12 @@ foreach($css_files as $file): ?>
                <li><a href="<?php echo base_url(); ?>">Inicio</a></li>
                <li><a href="<?php echo base_url(); ?>index.php/usuarios">Usuarios</a></li>
                <li><a href="<?php echo base_url(); ?>index.php/eventos">Eventos</a></li>
-               <li><a href="<?php echo base_url(); ?>index.php/actividades">Actividades</a></li>
+               <li class="dropdown">
+
+                <a href="<?php echo base_url(); ?>index.php/actividades">Actividades</a>
+
+              </li>
+
                <li><a href="<?php echo base_url(); ?>index.php/aulas">Aulas</a></li>
                <li><a href="<?php echo base_url(); ?>index.php/ponentes">Ponentes</a></li>
                <li><a href="<?php echo base_url();?>index.php/logout">Cerrar sesión</a></li>
