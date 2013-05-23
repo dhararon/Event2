@@ -56,6 +56,7 @@ class Usuario extends CI_Controller {
     	$crud->set_field_upload('imagen','assets/uploads/fotos');
 
     	$crud->callback_before_insert(array($this,'encrypt_password_callback'));
+    	$crud->callback_before_update(array($this,'encrypt_password_callback'));
  
     	$output = $crud->render();
  		

@@ -52,6 +52,8 @@ class Usuarios extends CI_Controller {
     	$crud->set_relation('tipo_fk','Tipos_Usuarios','nombreTipo');
 
     	$crud->callback_before_insert(array($this,'encrypt_password_callback'));
+    	$crud->callback_before_update(array($this,'encrypt_password_callback'));
+    	
  
     	$output = $crud->render();
  		
