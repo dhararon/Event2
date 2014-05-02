@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'us-cdbr-azure-east-a.cloudapp.net';
-$db['default']['username'] = 'b3a762012e35dd';
-$db['default']['password'] = 'ae6cc2a9';
-$db['default']['database'] = 'dhararon';
+$db['default']['hostname'] = 'dhararon.c0woqlidlmy6.us-west-2.rds.amazonaws.com';
+$db['default']['username'] = 'event2';
+$db['default']['password'] = '5N9e6xWw';
+$db['default']['database'] = 'Eventos';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
