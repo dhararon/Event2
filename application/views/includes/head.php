@@ -8,14 +8,14 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="<?php echo base_url();?>/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
     </style>
-    <link href="<?php echo base_url();?>/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -31,6 +31,15 @@
 
           <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+
+    <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
+    <script type=”text/javascript” >
+$(document).ready(function(){
+$(‘.dropdown-toggle’).dropdown();
+
+});
+
+</script>
     
       <!-- GROCERY CRUD -->
       <?php if( $tabla ){ ?>
