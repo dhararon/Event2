@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'us-cdbr-azure-west-a.cloudapp.net';
-$db['default']['username'] = 'bd52317b601862';
-$db['default']['password'] = 'abf7e13c';
+$db['default']['hostname'] = 'us-cdbr-azure-east-a.cloudapp.net';
+$db['default']['username'] = 'b3a762012e35dd';
+$db['default']['password'] = 'ae6cc2a9';
 $db['default']['database'] = 'dhararon';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
