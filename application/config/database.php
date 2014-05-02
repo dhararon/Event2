@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
+$db['default']['hostname'] = 'us-cdbr-azure-west-a.cloudapp.net';
+$db['default']['username'] = 'bd52317b601862';
+$db['default']['password'] = 'abf7e13c';
 $db['default']['database'] = 'Eventos';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
